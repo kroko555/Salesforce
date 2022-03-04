@@ -1,0 +1,23 @@
+public with sharing class OpportunityHelper {
+    
+    public static void logSomething(){
+        
+        if (Trigger.isAfter){
+            
+            if(Trigger.isUpdate){
+                System.debug('after update');
+ 
+            }
+            if(Trigger.isInsert){
+                system.debug('after insert');
+            }
+        }
+        if(Trigger.isBefore){
+            if(Trigger.isDelete){
+                System.debug('before delete');
+            }
+        }
+        
+    }
+
+}

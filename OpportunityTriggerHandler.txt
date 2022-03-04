@@ -1,0 +1,26 @@
+public class OpportunityTriggerHandler {
+    
+    public static void handleAfterUpdate(List<Opportunity> newlist, Map<Id, Opportunity> newMap, List<Opportunity> oldlist, Map<id, Opportunity> oldmap){
+        
+        
+AccountDescr.AccDescr();
+            
+        }
+                
+    public static void handleAfterInsert(List<Opportunity> newlist, Map<Id, Opportunity> newMap){
+        
+List<Task> tsktr = new List<Task>();
+        for(Opportunity opp : newlist){
+            Task tsk = new Task(Subject = 'Trigger Test After Update', WhatId = opp.Id);
+            tsktr.add(tsk);
+        }
+        insert tsktr;
+        }
+    
+    public static void handleBeforeDelete(List<Opportunity>oldlist, Map<Id, Opportunity>oldmap){
+        for(Opportunity opp : [select id from Opportunity where StageName = 'Closed Won' AND Id IN :Trigger.old]){
+            Trigger.oldmap.get(opp.Id).addError('Trigger Test Before Delete');
+        }
+        
+    }
+     }
